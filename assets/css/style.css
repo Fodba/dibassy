@@ -1,0 +1,1736 @@
+/* =========================================
+   DIBASSY LANDING PAGE V2 - CSS TAROT
+   Concept "Le Grand Oracle" - SEO Optimisé
+   Mobile-first responsive
+   ========================================= */
+
+/* =========================================
+   RESET & BASE
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Palette de couleurs */
+    --gold-primary: #D4AF37;
+    --gold-light: #F4E4C1;
+    --gold-dark: #B8941E;
+    --black-deep: #0A0A0A;
+    --brown-warm: #3D2817;
+    --brown-dark: #2A1810;
+    --white-off: #F5F5DC;
+    --gray-dark: #1A1A1A;
+    
+    /* Typographie */
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Lato', sans-serif;
+    
+    /* Espacements */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+    
+    /* Transitions */
+    --transition-fast: 0.3s ease;
+    --transition-flip: 0.6s ease;
+    
+    /* Ombres cartes tarot */
+    --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.6);
+    --shadow-card-hover: 0 20px 60px rgba(212, 175, 55, 0.4);
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--white-off);
+    background-color: var(--black-deep);
+    overflow-x: hidden;
+    position: relative;
+    
+    /* Background texture bois */
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(61, 40, 23, 0.1) 2px,
+            rgba(61, 40, 23, 0.1) 4px
+        ),
+        linear-gradient(
+            180deg,
+            var(--brown-dark) 0%,
+            var(--black-deep) 50%,
+            var(--brown-dark) 100%
+        );
+    background-attachment: fixed;
+}
+
+/* Canvas particules en background fixe */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem; /* Mobile : 16px */
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md); /* Tablet : 32px */
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* Liens */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Strong - max 2% du texte */
+strong {
+    color: var(--gold-primary);
+    font-weight: 600;
+}
+
+/* =========================================
+   NAVIGATION LATÉRALE TAROT
+   ========================================= */
+
+.tarot-nav {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: none; /* Caché sur mobile */
+}
+
+.nav-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 70px;
+    background: rgba(61, 40, 23, 0.8);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: var(--transition-fast);
+    backdrop-filter: blur(10px);
+}
+
+.nav-card:hover,
+.nav-card.active {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--gold-primary);
+    transform: translateX(5px);
+}
+
+.card-mini {
+    font-size: 1.5rem;
+}
+
+/* Desktop uniquement */
+@media (min-width: 1024px) {
+    .tarot-nav {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* =========================================
+   CTA FLOTTANTS (TÉLÉPHONE + WHATSAPP)
+   ========================================= */
+
+.floating-cta {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-float {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: var(--transition-fast);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-float:hover {
+    transform: scale(1.1);
+}
+
+.btn-call {
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    color: white;
+}
+
+.btn-call:hover {
+    box-shadow: 0 6px 30px rgba(255, 107, 53, 0.6);
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.btn-whatsapp:hover {
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+}
+
+/* Mobile : boutons plus petits */
+@media (max-width: 767px) {
+    .floating-cta {
+        right: 15px;
+        bottom: 15px;
+    }
+    
+    .btn-float {
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem;
+    }
+}
+
+/* =========================================
+   BOUTONS GLOBAUX
+   ========================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border: 2px solid transparent;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--gold-primary);
+    color: var(--black-deep);
+    border-color: var(--gold-primary);
+}
+
+.btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--gold-primary);
+    border: 2px solid var(--gold-primary);
+}
+
+.btn-secondary:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
+}
+
+.btn-large {
+    padding: 1.1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary-small {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* Animation pulse */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
+/* =========================================
+   SECTIONS COMMUNES
+   ========================================= */
+
+section {
+    position: relative;
+    padding: var(--spacing-xl) 0;
+    z-index: 1;
+}
+
+/* =========================================
+   HERO - LA CARTE DU DESTIN
+   ========================================= */
+
+.hero-tarot {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg) 0;
+}
+
+.tarot-card-large {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    transition: transform var(--transition-flip);
+    transform-style: preserve-3d;
+}
+
+.card-face {
+    position: relative;
+    background: linear-gradient(135deg, var(--brown-dark) 0%, var(--black-deep) 100%);
+    border: 3px solid var(--gold-primary);
+    border-radius: 12px;
+    padding: 1.5rem; /* Mobile */
+    box-shadow: var(--shadow-card);
+    backface-visibility: hidden;
+}
+
+@media (min-width: 768px) {
+    .card-face {
+        padding: var(--spacing-lg); /* Tablet+ */
+    }
+}
+
+.card-border {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.card-front {
+    transform: rotateY(0deg);
+}
+
+.card-number {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--gold-primary);
+    opacity: 0.5;
+}
+
+/* Contenu Hero */
+.card-content-hero {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.card-logo {
+    margin-bottom: var(--spacing-md);
+}
+
+.card-logo img {
+    margin: 0 auto;
+}
+
+.card-title-hero {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: var(--white-off);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.3;
+}
+
+.card-title-hero .highlight {
+    color: var(--gold-primary);
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.card-subtitle-hero {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--gold-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* CTA Hero - colonne sur mobile */
+.card-cta-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-lg) 0;
+}
+
+@media (min-width: 480px) {
+    .card-cta-hero {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* NOUVEAU : Liens internes Hero */
+.hero-quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: var(--spacing-md);
+    width: 100%;
+}
+
+.hero-quick-links a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--gold-primary);
+    border-radius: 6px;
+    color: var(--gold-light);
+    font-size: 0.95rem;
+    text-align: center;
+    transition: var(--transition-fast);
+}
+
+.hero-quick-links a:hover {
+    background: rgba(212, 175, 55, 0.2);
+    transform: translateY(-2px);
+    border-color: var(--gold-light);
+}
+
+/* Tablet : Grid 2x2 */
+@media (min-width: 600px) {
+    .hero-quick-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Desktop : Ligne horizontale */
+@media (min-width: 1024px) {
+    .hero-quick-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .hero-quick-links a {
+        flex: 0 1 auto;
+        white-space: nowrap;
+    }
+}
+
+.card-reassurance {
+    font-size: 0.95rem;
+    color: var(--gold-light);
+    opacity: 0.9;
+    margin-top: var(--spacing-md);
+}
+
+/* =========================================
+   DOUBLE TITRES H2 (TAROT + SEO)
+   ========================================= */
+
+.card-title-dual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.tarot-arcane {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: var(--gold-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+}
+
+/* Icônes décoratives cachées sur mobile */
+.tarot-arcane::before,
+.tarot-arcane::after {
+    content: "✨";
+    position: absolute;
+    font-size: 1rem;
+    opacity: 0.8;
+    display: none;
+}
+
+.seo-clarity {
+    font-family: var(--font-body);
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: var(--white-off);
+    font-weight: 400;
+    opacity: 0.95;
+    max-width: 90%;
+}
+
+/* Tablet : Icônes visibles */
+@media (min-width: 768px) {
+    .card-title-dual {
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+    
+    .tarot-arcane::before,
+    .tarot-arcane::after {
+        display: block;
+    }
+    
+    .tarot-arcane::before { left: -2rem; }
+    .tarot-arcane::after { right: -2rem; }
+}
+
+/* Desktop : Tailles maximales */
+@media (min-width: 1024px) {
+    .tarot-arcane {
+        font-size: 2.5rem;
+    }
+    
+    .seo-clarity {
+        font-size: 1.4rem;
+    }
+    
+    .tarot-arcane::before,
+    .tarot-arcane::after {
+        font-size: 1.2rem;
+    }
+}
+
+/* Titre de section principal */
+.section-title-main {
+    margin-bottom: var(--spacing-md);
+}
+
+/* =========================================
+   SECTIONS CARTES TAROT
+   ========================================= */
+
+.section-tarot {
+    padding: var(--spacing-xl) 0;
+}
+
+.tarot-card-section {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.card-content-section {
+    color: var(--white-off);
+    line-height: 1.8;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-subtitle {
+    font-size: 1.5rem;
+    color: var(--gold-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.section-subtitle-tarot {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Liens internes entre sections */
+.section-link {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    font-size: 1.05rem;
+}
+
+.section-link a {
+    color: var(--gold-primary);
+    transition: var(--transition-fast);
+}
+
+.section-link a:hover {
+    color: var(--gold-light);
+    text-decoration: underline;
+}
+
+/* =========================================
+   SECTION POURQUOI CHOISIR - LES 4 PILIERS
+   ========================================= */
+
+/* Mobile : Colonne simple */
+.pillars-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.pillar-card {
+    background: rgba(212, 175, 55, 0.05);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    text-align: center;
+    transition: var(--transition-fast);
+}
+
+.pillar-card:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold-primary);
+    transform: translateY(-3px);
+}
+
+.pillar-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.pillar-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--gold-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.pillar-card p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--white-off);
+}
+
+/* Tablet : Grid 2x2 */
+@media (min-width: 768px) {
+    .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+}
+
+/* Desktop : Grid 2x2 plus large */
+@media (min-width: 1024px) {
+    .pillars-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+}
+
+/* =========================================
+   DOMAINES - LA CROIX SACRÉE (ENRICHIE)
+   ========================================= */
+
+/* MOBILE : Colonne simple */
+.tarot-cross {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.tarot-cross-center {
+    display: none; /* Caché sur mobile */
+}
+
+.tarot-card-flip {
+    width: 100%;
+    max-width: 400px;
+    height: 550px;
+    min-height: 550px;  
+    max-height: 550px;  
+    perspective: 1000px;
+    contain: layout;    
+}
+
+.card-flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform var(--transition-flip);
+    transform-style: preserve-3d;
+    will-change: transform; 
+}
+
+/* Hover desktop OU class .flipped sur mobile/tablet */
+.tarot-card-flip:hover .card-flipper,
+.tarot-card-flip.flipped .card-flipper {
+    transform: rotateY(180deg);
+}
+
+.card-back-side,
+.card-front-side {
+    position: absolute;
+    top: 0;              /* ← AJOUT : Force position explicite */
+    left: 0;             /* ← AJOUT : Force position explicite */
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;    /* ← MODIFIÉ : overflow sur les deux faces */
+    border: 3px solid var(--gold-primary);
+    box-shadow: var(--shadow-card);
+}
+
+/* DOS DE CARTE */
+.card-back-side {
+    background: linear-gradient(135deg, var(--brown-dark) 0%, var(--black-deep) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+}
+
+.card-back-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-overlay-domain {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.95), transparent);
+    padding: var(--spacing-md);
+}
+
+.domain-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--gold-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.domain-desc {
+    font-size: 0.95rem;
+    color: var(--white-off);
+}
+
+/* FACE DE CARTE (CONTENU ENRICHI) */
+/* .card-front-side {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, var(--brown-dark) 0%, var(--black-deep) 100%);
+    overflow-y: auto; /* Scroll si contenu dépasse *//*
+    overflow-x: hidden;
+} */
+.card-front-side {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, var(--brown-dark) 0%, var(--black-deep) 100%);
+    overflow: hidden;  /* ← CHANGÉ : pas de scroll sur la face elle-même */
+}
+
+
+/* .card-content-domain {
+    padding: var(--spacing-md);
+    max-height: 100%;
+} */
+.card-content-domain {
+    padding: var(--spacing-md);
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;  /* ← AJOUT : Active le scroll momentum iOS */
+    overscroll-behavior: contain;       /* ← AJOUT : Empêche le scroll de déborder */
+}
+
+/* Scrollbar personnalisée sur mobile */
+/* @media (max-width: 767px) {
+    .card-content-domain {
+        padding-right: 0.5rem;
+    }
+    
+    .card-front-side::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .card-front-side::-webkit-scrollbar-track {
+        background: rgba(212, 175, 55, 0.1);
+        border-radius: 3px;
+    }
+    
+    .card-front-side::-webkit-scrollbar-thumb {
+        background: var(--gold-primary);
+        border-radius: 3px;
+    }
+} */
+/* Scrollbar personnalisée (visible sur mobile) */
+.card-content-domain::-webkit-scrollbar {
+    width: 8px;  /* ← AUGMENTÉ de 6px à 8px (plus facile à voir) */
+}
+
+.card-content-domain::-webkit-scrollbar-track {
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 4px;
+}
+
+.card-content-domain::-webkit-scrollbar-thumb {
+    background: var(--gold-primary);
+    border-radius: 4px;
+}
+
+.card-content-domain::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-light);
+}
+
+/* Sur mobile uniquement */
+@media (max-width: 767px) {
+    .card-content-domain {
+        padding-right: 0.8rem;  /* ← Plus d'espace pour la scrollbar */
+    }
+}
+
+.domain-title-front {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--gold-primary);
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+}
+
+.domain-intro {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+}
+
+.domain-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--gold-primary);
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.domain-services {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--spacing-sm);
+}
+
+.domain-services li {
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.domain-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-sm) 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-item strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    margin-bottom: 0.3rem;
+}
+
+.stat-item span {
+    display: block;
+    font-size: 1rem;
+    color: var(--gold-primary);
+    font-weight: 600;
+}
+
+.domain-cta {
+    text-align: center;
+    margin-top: var(--spacing-sm);
+}
+
+.card-number-domain {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    opacity: 0.5;
+}
+
+/* TABLET : Grid 2x2 */
+@media (min-width: 768px) {
+    .tarot-cross {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: var(--spacing-md);
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .tarot-card-flip {
+        max-width: none;
+        height: 600px;
+    }
+}
+
+/* DESKTOP : Croix sacrée 3x3 */
+@media (min-width: 1024px) {
+    .tarot-cross {
+        display: grid;
+        grid-template-columns: repeat(3, 280px);
+        grid-template-rows: repeat(3, 480px);
+        gap: 20px;
+        max-width: 900px;
+        justify-content: center;
+    }
+    
+    .tarot-card-flip {
+        width: 280px;
+        height: 480px;
+        max-width: none;
+    }
+    
+    /* Disposition en croix */
+    .card-top {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    
+    .card-left {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .tarot-cross-center {
+        display: flex;
+        grid-column: 2;
+        grid-row: 2;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .center-symbol {
+        font-size: 4rem;
+        color: var(--gold-primary);
+        text-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+        animation: rotate-symbol 10s linear infinite;
+    }
+    
+    @keyframes rotate-symbol {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .card-right {
+        grid-column: 3;
+        grid-row: 2;
+    }
+    
+    .card-bottom {
+        grid-column: 2;
+        grid-row: 3;
+    }
+}
+
+/* =========================================
+   SECTION ABOUT - LE MAGE (ENRICHIE)
+   ========================================= */
+
+.about-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.about-image-card img {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid var(--gold-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.about-text-card p {
+    margin-bottom: var(--spacing-md);
+}
+
+.about-text-card strong {
+    color: var(--gold-primary);
+}
+
+/* NOUVEAU : Méthode de travail */
+.about-method {
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.about-method h4 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--gold-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-method p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* NOUVEAU : Valeurs */
+.about-values {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.value-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background: rgba(212, 175, 55, 0.05);
+    border-radius: 6px;
+}
+
+.value-icon {
+    font-size: 1.5rem;
+}
+
+.value-item strong {
+    font-size: 1rem;
+}
+
+/* Tablet : About en 2 colonnes */
+@media (min-width: 768px) {
+    .about-layout {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .about-image-card {
+        flex: 0 0 300px;
+    }
+    
+    .about-text-card {
+        flex: 1;
+    }
+    
+    .about-values {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    .value-item {
+        flex-direction: column;
+        text-align: center;
+        flex: 1;
+    }
+}
+
+/* =========================================
+   PROCESSUS - LE CHEMIN
+   ========================================= */
+
+.processus-steps-tarot {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.step-tarot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-md);
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    transition: var(--transition-fast);
+}
+
+.step-tarot:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold-primary);
+}
+
+.step-number-tarot {
+    width: 60px;
+    height: 60px;
+    background: var(--gold-primary);
+    color: var(--black-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+}
+
+.step-title-tarot {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--gold-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.step-desc-tarot {
+    color: var(--white-off);
+}
+
+/* Tablet : Processus en ligne */
+@media (min-width: 768px) {
+    .processus-steps-tarot {
+        flex-direction: row;
+    }
+    
+    .step-tarot {
+        flex: 1;
+    }
+}
+
+/* =========================================
+   TÉMOIGNAGES - LES ÉTOILES (ENRICHIS)
+   ========================================= */
+
+.testimonials-tarot {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+}
+
+.testimonial-card {
+    background: rgba(212, 175, 55, 0.05);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    transition: var(--transition-fast);
+}
+
+.testimonial-card:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold-primary);
+    transform: translateY(-3px);
+}
+
+.testimonial-stars {
+    color: var(--gold-primary);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.testimonial-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--white-off);
+    margin: var(--spacing-sm) 0;
+}
+
+.testimonial-author {
+    display: block;
+    margin-top: var(--spacing-md);
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    font-style: italic;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    padding-top: var(--spacing-sm);
+}
+
+.testimonial-date {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Tablet : 2 colonnes */
+@media (min-width: 768px) {
+    .testimonials-tarot {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop : 2 colonnes plus larges */
+@media (min-width: 1200px) {
+    .testimonials-tarot {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+}
+
+/* =========================================
+   ZONES - LE TERRITOIRE
+   ========================================= */
+
+.zones-grid-tarot {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.zone-item {
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    text-align: center;
+    transition: var(--transition-fast);
+    font-size: 0.95rem;
+}
+
+.zone-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold-primary);
+    transform: translateY(-3px);
+}
+
+.zones-cities {
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--white-off);
+    margin-bottom: var(--spacing-lg);
+}
+
+.zones-remote-tarot {
+    background: linear-gradient(135deg, var(--brown-warm), var(--brown-dark));
+    border: 2px solid var(--gold-primary);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
+
+.zones-remote-tarot h3 {
+    color: var(--gold-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.zones-remote-tarot p {
+    color: var(--gold-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.cta-remote {
+    margin-top: var(--spacing-md);
+}
+
+/* =========================================
+   FAQ - LA SAGESSE
+   ========================================= */
+
+.faq-container-tarot {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item-tarot {
+    margin-bottom: var(--spacing-md);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.faq-question-tarot {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: transparent;
+    border: none;
+    color: var(--gold-primary);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.faq-question-tarot:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.faq-icon-tarot {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--gold-primary);
+    transition: var(--transition-fast);
+}
+
+.faq-question-tarot[aria-expanded="true"] .faq-icon-tarot {
+    transform: rotate(45deg);
+}
+
+.faq-answer-tarot {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+    color: var(--white-off);
+    line-height: 1.7;
+}
+
+.faq-answer-tarot[hidden] {
+    display: none;
+}
+
+.faq-answer-tarot p {
+    margin: 0;
+}
+
+/* =========================================
+   CONTACT - L'APPEL
+   ========================================= */
+
+.contact-headline {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--gold-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.3;
+}
+
+.contact-text-tarot {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--white-off);
+    margin-bottom: var(--spacing-lg);
+}
+
+.contact-cta-tarot {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: center;
+    margin: var(--spacing-lg) 0;
+}
+
+.contact-phone-tarot {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--gold-primary);
+    margin: var(--spacing-md) 0;
+}
+
+.contact-reassurance-tarot {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--gold-light);
+}
+
+/* Desktop : CTA en ligne */
+@media (min-width: 1024px) {
+    .contact-cta-tarot {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.footer-tarot {
+    background: linear-gradient(180deg, var(--black-deep), var(--brown-dark));
+    border-top: 2px solid var(--gold-primary);
+    padding: var(--spacing-xl) 0 var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.footer-content-tarot {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-heading {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--gold-primary);
+    margin-bottom: 1rem;
+}
+
+.footer-heading strong {
+    font-weight: 600;
+}
+
+.footer-section-tarot p {
+    color: var(--white-off);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.footer-section-tarot a {
+    color: var(--gold-light);
+    transition: var(--transition-fast);
+}
+
+.footer-section-tarot a:hover {
+    color: var(--gold-primary);
+}
+
+.footer-bottom-tarot {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    color: var(--gold-light);
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Tablet : Footer en 3 colonnes */
+@media (min-width: 768px) {
+    .footer-content-tarot {
+        grid-template-columns: repeat(3, 1fr);
+        text-align: left;
+    }
+}
+
+/* =========================================
+   ANIMATIONS SCROLL REVEAL
+   ========================================= */
+
+/* Contenu VISIBLE par défaut (progressive enhancement) */
+[data-reveal] {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Le JS ajoutera la classe .reveal-ready pour activer les animations */
+body.reveal-ready [data-reveal]:not(.visible) {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+body.reveal-ready [data-reveal].visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   SCROLL TO TOP BUTTON
+   ========================================= */
+
+.scroll-to-top-tarot {
+    position: fixed;
+    bottom: 140px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gold-primary);
+    color: var(--black-deep);
+    border: 2px solid var(--gold-dark);
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-to-top-tarot:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 30px rgba(212, 175, 55, 0.6);
+}
+
+/* Mobile : plus petit */
+@media (max-width: 767px) {
+    .scroll-to-top-tarot {
+        width: 45px;
+        height: 45px;
+        bottom: 130px;
+        right: 15px;
+        font-size: 1.3rem;
+    }
+}
+
+/* =========================================
+   ACCESSIBILITÉ
+   ========================================= */
+
+*:focus-visible {
+    outline: 2px solid var(--gold-primary);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================
+   MENU BURGER MOBILE
+   ========================================= */
+
+/* BOUTON BURGER */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 40px;
+    height: 40px;
+    background: rgba(61, 40, 23, 0.9);
+    border: 2px solid var(--gold-primary);
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 102;
+    transition: var(--transition-fast);
+    backdrop-filter: blur(10px);
+}
+
+.burger-menu:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--gold-light);
+}
+
+.burger-line {
+    width: 100%;
+    height: 3px;
+    background: var(--gold-primary);
+    border-radius: 2px;
+    transition: var(--transition-fast);
+}
+
+/* Animation burger → X */
+.burger-menu.active .burger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger-menu.active .burger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active .burger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* MENU MOBILE OVERLAY */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Caché hors écran à droite */
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--brown-dark) 0%, var(--black-deep) 100%);
+    border-left: 3px solid var(--gold-primary);
+    z-index: 101;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+}
+
+/* Menu ouvert */
+.mobile-nav.active {
+    right: 0; /* Slide depuis la droite */
+}
+
+/* Bouton fermer */
+.mobile-nav-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid var(--gold-primary);
+    border-radius: 50%;
+    color: var(--gold-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-nav-close:hover {
+    background: rgba(212, 175, 55, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Liste des liens */
+.mobile-nav-list {
+    list-style: none;
+    padding: 80px 30px 30px;
+    margin: 0;
+}
+
+.mobile-nav-list li {
+    margin-bottom: 0.5rem;
+}
+
+.mobile-nav-list a {
+    display: block;
+    padding: 1rem;
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    transition: var(--transition-fast);
+}
+
+.mobile-nav-list a:hover {
+    color: var(--gold-primary);
+    background: rgba(212, 175, 55, 0.1);
+    padding-left: 1.5rem;
+}
+
+/* OVERLAY BACKGROUND (optionnel mais recommandé) */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* DESKTOP : tout cacher */
+@media (min-width: 1024px) {
+    .burger-menu,
+    .mobile-nav,
+    .mobile-nav-overlay {
+        display: none !important;
+    }
+}
+
+/* TABLET : Grid 2x2 */
+@media (min-width: 768px) {
+    .tarot-cross {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: var(--spacing-md);
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .tarot-card-flip {
+        max-width: none;
+        height: 600px;
+        min-height: 600px;  /* ← AJOUT */
+        max-height: 600px;  /* ← AJOUT */
+    }
+}
+
+/* DESKTOP : Croix sacrée 3x3 */
+@media (min-width: 1024px) {
+    /* ... code existant ... */
+    
+    .tarot-card-flip {
+        width: 280px;
+        height: 480px;
+        min-height: 480px;  /* ← AJOUT */
+        max-height: 480px;  /* ← AJOUT */
+        max-width: none;
+    }
+    
+    /* ... reste du code ... */
+}
